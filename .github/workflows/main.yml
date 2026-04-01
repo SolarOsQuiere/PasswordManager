@@ -5,7 +5,7 @@ permissions:
   pages: write
 
 env:
-  PUBLISH_DIR: src/PassManager/bin/Release/net10.0/publish/wwwroot
+  PUBLISH_DIR: src/PasswordManager/bin/Release/net10.0/publish/wwwroot
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
