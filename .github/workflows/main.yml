@@ -27,7 +27,7 @@ jobs:
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
         with:
           html_path: ${{ env.PUBLISH_DIR }}/index.html
-          base_href: /PassManager/
+          base_href: /PasswordManager/
 
       - name: Create 404.html from index.html
         run: |
