@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="src/PassManager/PassManager.csproj" />
+  <Project Path="src/PasswordManager/PasswordManager.csproj" />
   <Project Path="src/Tests/Tests.csproj" Id="ee8ba3c4-adc5-4373-bf6d-6198d3461907" />
 </Solution>
