@@ -37,4 +37,4 @@ jobs:
           target_branch: gh-pages
           build_dir: ${{ env.PUBLISH_DIR }}
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ env.PasswordManager-Deploy }}
