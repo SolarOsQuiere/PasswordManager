@@ -1,0 +1,143 @@
+﻿@inject DeterministicSecretService SecretService
+@inject IJSRuntime JSRuntime
+@inject TextVisibilityService TextVisibilityService
+@implements IDisposable
+
+<EditForm EditContext="@editContext">
+    <DataAnnotationsValidator />
+
+    <RadzenStack Gap="1rem">
+        <div class="hero-block">
+            <RadzenText TextStyle="TextStyle.DisplayH4" TagName="TagName.H2">Codigo numerico</RadzenText>
+            <RadzenText TextStyle="TextStyle.Body1" class="muted-text hero-copy">
+                Pensado para obtener un PIN numérico reproducible con la longitud que necesites, desde 4 hasta 16 digitos.
+            </RadzenText>
+            <div class="feature-strip">
+                <span class="feature-pill">Generar digitos numericos</span>
+                <span class="feature-pill">Longitud variable</span>
+                <span class="feature-pill">Misma entrada, mismo PIN</span>
+                <span class="feature-pill">De 4 a 16 digitos</span>
+            </div>
+        </div>
+
+        <div class="field-group">
+            <div class="field-label-row">
+                <label class="field-label" for="privateCodeKey">Clave privada</label>
+                <span class="field-help" tabindex="0">
+                    ?
+                    <span class="field-tooltip">Tu clave privada debe ser tu contrasena personal e intransferible. No deberias compartirla con nadie.</span>
+                </span>
+            </div>
+            <RadzenTextBox @bind-Value="request.PrivateKey"
+                           Name="privateCodeKey"
+                           Placeholder="Clave privada"
+                           Type="@TextInputType"
+                           Style="width: 100%;"
+                           class="modern-input" />
+            <div class="field-hint">Se usa como tu secreto personal y no deberias compartirlo.</div>
+            <ValidationMessage For="@(() => request.PrivateKey)" />
+        </div>
+
+        <div class="field-group">
+            <div class="field-label-row">
+                <label class="field-label" for="publicCodeKey">Clave publica</label>
+                <span class="field-help" tabindex="0">
+                    ?
+                    <span class="field-tooltip">Las claves publicas son los sitios o servicios a los que quieres acceder, por ejemplo una web, app o plataforma.</span>
+                </span>
+            </div>
+            <RadzenTextBox @bind-Value="request.PublicKey"
+                           Name="publicCodeKey"
+                           Placeholder="Clave publica"
+                           Type="@TextInputType"
+                           Style="width: 100%;"
+                           class="modern-input" />
+            <div class="field-hint">Indica el sitio o servicio para el que quieres generar el PIN.</div>
+            <ValidationMessage For="@(() => request.PublicKey)" />
+        </div>
+
+        <div class="field-group">
+            <label class="field-label" for="pinLength">Longitud del PIN</label>
+            <RadzenNumeric @bind-Value="request.Digits"
+                           Name="pinLength"
+                           TValue="int?"
+                           Min="@NumericCodeRequest.MinDigits"
+                           Max="@NumericCodeRequest.MaxDigits"
+                           Step="1"
+                           Style="width: 100%;"
+                           class="@NumericInputClass" />
+            <div class="field-hint">Obligatoria. Debe estar entre 4 y 16 digitos.</div>
+            <ValidationMessage For="@(() => request.Digits)" />
+        </div>
+
+        <RadzenButton Text="Generar codigo"
+                      Icon="dialpad"
+                      ButtonStyle="ButtonStyle.Primary"
+                      Click="@GenerateCode"
+                      Style="width: 100%;"
+                      class="primary-action" />
+
+        <div class="result-panel">
+            <label class="field-label">Resultado</label>
+            <div class="result-actions">
+                <RadzenTextBox Value="@generatedCode"
+                               ReadOnly="true"
+                               Type="@TextInputType"
+                               Style="width: 100%;"
+                               class="modern-input result-box" />
+                <RadzenButton Text="Copiar"
+                              Icon="content_copy"
+                              Variant="Variant.Flat"
+                              Click="@CopyCode"
+                              Disabled="@string.IsNullOrWhiteSpace(generatedCode)"
+                              class="copy-action" />
+            </div>
+        </div>
+    </RadzenStack>
+</EditForm>
+
+@code {
+    private readonly NumericCodeRequest request = new();
+    private EditContext editContext = default!;
+    private string generatedCode = string.Empty;
+    private string TextInputType => TextVisibilityService.IsVisible ? "text" : "password";
+    private string NumericInputClass => TextVisibilityService.IsVisible ? "modern-input" : "modern-input masked-numeric-input";
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(request);
+        TextVisibilityService.Changed += HandleVisibilityChanged;
+    }
+
+    public void Dispose()
+    {
+        TextVisibilityService.Changed -= HandleVisibilityChanged;
+    }
+
+    private void HandleVisibilityChanged()
+    {
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+    private void GenerateCode()
+    {
+        if (!editContext.Validate())
+        {
+            generatedCode = string.Empty;
+            return;
+        }
+
+        generatedCode = SecretService.GenerateNumericCode(request.PrivateKey, request.PublicKey, request.Digits!.Value);
+    }
+
+    private async Task CopyCode()
+    {
+        if (string.IsNullOrWhiteSpace(generatedCode))
+        {
+            return;
+        }
+
+        await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", generatedCode);
+    }
+}
+

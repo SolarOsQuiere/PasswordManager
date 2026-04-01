@@ -1,0 +1,16 @@
+@page "/not-found"
+@layout MainLayout
+@inject AppRoutesService AppRoutesService
+
+<PageTitle>No encontrada</PageTitle>
+
+<div class="page-shell">
+    <div class="not-found-shell card-centered">
+        <div class="eyebrow">404</div>
+        <h1 class="not-found-title">La pagina que buscas no existe</h1>
+        <p class="muted-text not-found-copy">
+            Puede que la ruta haya cambiado o que el enlace ya no este disponible. Vuelve al inicio para seguir usando la aplicacion.
+        </p>
+        <a class="btn btn-primary primary-action not-found-action" href="@AppRoutesService.GetPath(AppPage.Home)">Ir al inicio</a>
+    </div>
+</div>

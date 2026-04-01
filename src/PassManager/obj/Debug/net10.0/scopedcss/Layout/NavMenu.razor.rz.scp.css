@@ -1,0 +1,130 @@
+.navbar-toggler[b-sgpjxp0a8l] {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+}
+
+.top-row[b-sgpjxp0a8l] {
+    min-height: 5.5rem;
+    background: transparent;
+    padding-top: 1.25rem;
+}
+
+.navbar-brand[b-sgpjxp0a8l] {
+    font-size: 1.1rem;
+}
+
+.app-brand[b-sgpjxp0a8l] {
+    align-items: center;
+    display: flex;
+    gap: 0.9rem;
+    text-decoration: none;
+}
+
+.brand-mark[b-sgpjxp0a8l] {
+    align-items: center;
+    background: linear-gradient(135deg, #14b8a6 0%, #0ea5e9 100%);
+    border-radius: 18px;
+    box-shadow: 0 16px 28px rgba(20, 184, 166, 0.22);
+    color: white;
+    display: inline-flex;
+    font-size: 0.95rem;
+    font-weight: 800;
+    height: 3rem;
+    justify-content: center;
+    letter-spacing: 0.08em;
+    width: 3rem;
+}
+
+.brand-copy[b-sgpjxp0a8l] {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.brand-copy strong[b-sgpjxp0a8l] {
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.brand-copy small[b-sgpjxp0a8l] {
+    color: rgba(226, 232, 240, 0.72);
+    font-size: 0.78rem;
+    margin-top: 0.28rem;
+}
+
+.bi[b-sgpjxp0a8l] {
+    display: inline-block;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    top: -1px;
+    background-size: cover;
+}
+
+.bi-house-door-fill-nav-menu[b-sgpjxp0a8l] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-house-door-fill' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z'/%3E%3C/svg%3E");
+}
+
+.bi-plus-square-fill-nav-menu[b-sgpjxp0a8l] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-plus-square-fill' viewBox='0 0 16 16'%3E%3Cpath d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z'/%3E%3C/svg%3E");
+}
+
+.bi-list-nested-nav-menu[b-sgpjxp0a8l] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-list-nested' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
+}
+
+.nav-scrollable[b-sgpjxp0a8l] {
+    padding: 0.5rem 1rem 1.25rem;
+}
+
+.nav-scrollable[b-sgpjxp0a8l]  .rz-navigation-item-link {
+    align-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 18px;
+    color: #dbe4f0;
+    font-size: 0.96rem;
+    font-weight: 700;
+    margin-bottom: 0.45rem;
+    min-height: 3.4rem;
+    padding: 0.85rem 1rem;
+    transition: all 0.18s ease;
+}
+
+.nav-scrollable[b-sgpjxp0a8l]  .rz-navigation-item-link:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+}
+
+.nav-scrollable[b-sgpjxp0a8l]  .rz-navigation-item-wrapper-active > .rz-navigation-item-link {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.22) 0%, rgba(14, 165, 233, 0.18) 100%);
+    border-color: rgba(45, 212, 191, 0.18);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+}
+
+.nav-scrollable[b-sgpjxp0a8l]  .rzi {
+    color: #8ce9dc;
+    font-size: 1.15rem;
+    margin-right: 0.8rem;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler[b-sgpjxp0a8l] {
+        display: none;
+    }
+
+    .collapse[b-sgpjxp0a8l] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+
+    .nav-scrollable[b-sgpjxp0a8l] {
+        height: calc(100vh - 5.5rem);
+        overflow-y: auto;
+    }
+}

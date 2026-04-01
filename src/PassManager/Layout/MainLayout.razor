@@ -1,0 +1,14 @@
+@inherits LayoutComponentBase
+
+<RadzenComponents @rendermode="RenderMode.InteractiveWebAssembly" />
+<div class="page">
+    <main>
+        <div class="top-row px-4">
+            <Header @rendermode="RenderMode.InteractiveWebAssembly" />
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>

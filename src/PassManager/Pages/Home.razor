@@ -1,0 +1,72 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+@inject AppRoutesService AppRoutesService
+@inject TextVisibilityService TextVisibilityService
+
+<PageTitle>Gestion de Contraseñas</PageTitle>
+
+<div class="page-shell">
+    <RadzenCard class="generator-card card-centered">
+        <RadzenStack Gap="1.25rem">
+            <div class="page-toolbar">
+                <button class="visibility-toggle-button"
+                        type="button"
+                        @onclick="ToggleVisibility"
+                        aria-label="Mostrar u ocultar el contenido de todos los campos">
+                    <RadzenIcon Icon="@(TextVisibilityService.IsVisible ? "visibility_off" : "visibility")" />
+                    <span>@(TextVisibilityService.IsVisible ? "Ocultar campos" : "Mostrar campos")</span>
+                </button>
+
+                <span class="toolbar-help" tabindex="0" aria-label="Informacion sobre ocultar campos">
+                    <RadzenIcon Icon="info" />
+                    <span class="toolbar-tooltip">
+                        Este boton oculta o muestra el contenido de las claves y de los resultados para trabajar con mas privacidad.
+                    </span>
+                </span>
+            </div>
+
+            <div class="spa-switcher">
+                <button class="tool-switch @(SelectedGenerator == GeneratorKind.Password ? "active" : null)"
+                        type="button"
+                        @onclick="@(() => SelectGenerator(GeneratorKind.Password))">
+                    <span>Clave</span>
+                    <small>Clave de texto de 15 a 128 caracteres</small>
+                </button>
+
+                <button class="tool-switch @(SelectedGenerator == GeneratorKind.NumericCode ? "active" : null)"
+                        type="button"
+                        @onclick="@(() => SelectGenerator(GeneratorKind.NumericCode))">
+                    <span>Codigo</span>
+                    <small>PIN numerico de 4 a 16 cifras</small>
+                </button>
+            </div>
+
+            @if (SelectedGenerator == GeneratorKind.Password)
+            {
+                <PasswordGeneratorPanel />
+            }
+            else
+            {
+                <NumericCodeGeneratorPanel />
+            }
+        </RadzenStack>
+    </RadzenCard>
+</div>
+
+@code {
+    [SupplyParameterFromQuery(Name = "tool")]
+    public string? Tool { get; set; }
+
+    private GeneratorKind SelectedGenerator => AppRoutesService.ParseGenerator(Tool);
+
+    private void SelectGenerator(GeneratorKind generatorKind)
+    {
+        NavigationManager.NavigateTo(AppRoutesService.GetGeneratorUri(generatorKind));
+    }
+
+    private void ToggleVisibility()
+    {
+        TextVisibilityService.Toggle();
+    }
+}
+

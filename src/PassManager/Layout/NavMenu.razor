@@ -1,0 +1,35 @@
+@inject AppRoutesService AppRoutesService
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand app-brand" href="@AppRoutesService.GetPath(AppPage.Home)">
+            <span class="brand-mark">PM</span>
+            <span class="brand-copy">
+                <strong>PassManager</strong>
+                <small>Credenciales deterministas</small>
+            </span>
+        </a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <RadzenPanelMenu Style="background: transparent; border: 0;">
+        <RadzenPanelMenuItem Text="Generador de clave" Icon="password" Path="@AppRoutesService.GetGeneratorUri(GeneratorKind.Password)" />
+        <RadzenPanelMenuItem Text="Codigo numerico" Icon="pin" Path="@AppRoutesService.GetGeneratorUri(GeneratorKind.NumericCode)" />
+        <RadzenPanelMenuItem Text="Documentacion" Icon="description" Path="@AppRoutesService.GetPath(AppPage.Documentation)" />
+    </RadzenPanelMenu>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
