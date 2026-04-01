@@ -2,7 +2,7 @@ name: PublishApp
 
 env:
   PUBLISH_DIR: src/PassManager/bin/Release/net10.0/publish/wwwroot
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.PasswordManager-Deploy }}
 
 on:
   push:
